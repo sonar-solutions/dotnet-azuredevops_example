@@ -39,18 +39,15 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'restore'
-    projects: 'CSharpProject/SomeConsoleApplication.sln' # Adjust this pattern to match your project file
-    workingDirectory: CSharpProject/
-  # Command Line task to run your build.
-
-# Dotnet build task
-- task: DotNetCoreCLI@2
-  inputs:
     command: 'build'
     projects: 'CSharpProject/SomeConsoleApplication.sln'
-    workingDirectory: CSharpProject/
-  displayName: 'dotnet build'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'CSharpProject/SomeConsoleApplicationTest/SomeConsoleApplicationTest.csproj'
+    arguments: '--configuration Release --no-build'
 
 # Run Code Analysis task
 - task: SonarQubeAnalyze@7
