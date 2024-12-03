@@ -34,7 +34,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.0' # Use the appropriate .NET SDK version for your project
+    version: '5.0.17' # Use the appropriate .NET SDK version for your project
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
