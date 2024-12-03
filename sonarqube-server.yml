@@ -31,6 +31,12 @@ steps:
       # sonar.exclusions=**/*.bin
       sonar.verbose=true
 
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: 'CSharpProject/SomeConsoleApplication.sln'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
