@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'restore'
     projects: 'SomeConsoleApplication.sln' # Adjust this pattern to match your project file
-    workingDirectory: .
+    workingDirectory: CSharpProject/
   # Command Line task to run your build.
 
 # Dotnet build task
@@ -43,7 +43,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'SomeConsoleApplication.sln'
-    workingDirectory: .
+    workingDirectory: CSharpProject/
   displayName: 'dotnet build'
 
 # Run Code Analysis task
