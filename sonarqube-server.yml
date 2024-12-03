@@ -14,11 +14,6 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-
 steps:
 - checkout: self
  # Disable shallow fetch
@@ -39,7 +34,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: 'project.sln' # Adjust this pattern to match your project file
+    projects: 'SomeConsoleApplication.sln' # Adjust this pattern to match your project file
     workingDirectory: .
   # Command Line task to run your build.
 
@@ -47,7 +42,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: 'project.sln'
+    projects: 'SomeConsoleApplication.sln'
     workingDirectory: .
   displayName: 'dotnet build'
 
