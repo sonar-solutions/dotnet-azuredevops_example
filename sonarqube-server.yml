@@ -24,7 +24,7 @@ steps:
     SonarQube: 'SonarQube Server-dotnet-example'
     scannerMode: 'dotnet'
     projectKey: 'onboarding-examples_dotnet-example'
-    projectName: 'onboarding-examples_python-example'
+    projectName: 'onboarding-examples_dotnet-example'
     extraProperties: |
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
