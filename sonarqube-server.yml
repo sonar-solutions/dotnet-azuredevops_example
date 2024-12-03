@@ -34,16 +34,16 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: 'SomeConsoleApplication.sln' # Adjust this pattern to match your project file
-    workingDirectory: CSharpProject/
+    projects: 'CSharpProject/SomeConsoleApplication.sln' # Adjust this pattern to match your project file
+    workingDirectory: .
   # Command Line task to run your build.
 
 # Dotnet build task
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: 'SomeConsoleApplication.sln'
-    workingDirectory: CSharpProject/
+    projects: 'CSharpProject/SomeConsoleApplication.sln'
+    workingDirectory: .
   displayName: 'dotnet build'
 
 # Run Code Analysis task
