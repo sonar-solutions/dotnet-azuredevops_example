@@ -37,11 +37,6 @@ steps:
     version: '5.0.408' # Use the appropriate .NET SDK version for your project
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- script: |
-    dotnet add CSharpProject/SomeConsoleApplicationTest/SomeConsoleApplicationTest.csproj package MSTest.TestFramework
-    dotnet add CSharpProject/SomeConsoleApplicationTest/SomeConsoleApplicationTest.csproj package MSTest.TestAdapter
-  displayName: 'Add MSTest packages'
-  
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
