@@ -61,8 +61,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-  <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-  <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
