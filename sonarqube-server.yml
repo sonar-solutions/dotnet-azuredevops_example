@@ -31,11 +31,16 @@ steps:
       # sonar.exclusions=**/*.bin
       sonar.verbose=true
 
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: UseDotNet@2
   inputs:
-    restoreSolution: 'CSharpProject/SomeConsoleApplication.sln'
+    packageType: 'sdk'
+    version: '5.0' # Use the appropriate .NET SDK version for your project
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: 'CSharpProject/SomeConsoleApplication.sln'
 
 - task: DotNetCoreCLI@2
   inputs:
