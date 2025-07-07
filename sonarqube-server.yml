@@ -15,7 +15,6 @@ pool:
   vmImage: 'windows-latest'
 
 - stage: SonarQube
-  dependsOn: Test
   jobs:
   - job: SonarQubeAnalysis
     pool:
