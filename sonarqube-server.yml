@@ -14,50 +14,56 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-steps:
-- checkout: self
- # Disable shallow fetch
-  fetchDepth: 0
+- stage: SonarQube
+  dependsOn: Test
+  jobs:
+  - job: SonarQubeAnalysis
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: self
+    # Disable shallow fetch
+      fetchDepth: 0
 
-- task: SonarQubePrepare@7
-  inputs:
-    SonarQube: 'SonarQube Server-dotnet-example'
-    scannerMode: 'dotnet'
-    projectKey: 'onboarding-examples_dotnet-example'
-    projectName: 'onboarding-examples_dotnet-example'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner, 
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.verbose=true
+    - task: SonarQubePrepare@7
+      inputs:
+        SonarQube: 'SonarQube Server-dotnet-example'
+        scannerMode: 'dotnet'
+        projectKey: 'onboarding-examples_dotnet-example'
+        projectName: 'onboarding-examples_dotnet-example'
+        extraProperties: |
+          # Additional properties that will be passed to the scanner, 
+          # Put one key=value per line, example:
+          # sonar.exclusions=**/*.bin
+          sonar.verbose=true
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.0.408' # Use the appropriate .NET SDK version for your project
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '8.0.408' # Use the appropriate .NET SDK version for your project
+        installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: 'CSharpProject/SomeConsoleApplication.sln'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: 'CSharpProject/SomeConsoleApplication.sln'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: 'CSharpProject/SomeConsoleApplication.sln'
-    arguments: '--configuration Release'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        projects: 'CSharpProject/SomeConsoleApplication.sln'
+        arguments: '--configuration Release'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: 'CSharpProject/SomeConsoleApplicationTest/SomeConsoleApplicationTest.csproj'
-    arguments: '--configuration Release --no-build'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: 'CSharpProject/SomeConsoleApplicationTest/SomeConsoleApplicationTest.csproj'
+        arguments: '--configuration Release --no-build'
 
-# Run Code Analysis task
-- task: SonarQubeAnalyze@7
+    # Run Code Analysis task
+    - task: SonarQubeAnalyze@7
 
-# Publish Quality Gate Result task
-- task: SonarQubePublish@7
-  inputs:
-    pollingTimeoutSec: '300'
+    # Publish Quality Gate Result task
+    - task: SonarQubePublish@7
+      inputs:
+        pollingTimeoutSec: '300'
