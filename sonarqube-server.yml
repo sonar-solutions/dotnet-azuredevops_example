@@ -18,7 +18,7 @@ pool:
   jobs:
   - job: SonarQubeAnalysis
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-latest'
     steps:
     - checkout: self
     # Disable shallow fetch
