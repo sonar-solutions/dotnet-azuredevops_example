@@ -25,7 +25,7 @@ steps:
     organization: 'azure-devops-onboarding-examples'
     scannerMode: 'dotnet'
     projectKey: 'onboarding-examples_dotnet-example'
-    projectName: 'onboarding-examples_dotnet-example'
+    projectName: 'Onboarding Example - AzureDevOps - DotNet Example'
     extraProperties: |
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
